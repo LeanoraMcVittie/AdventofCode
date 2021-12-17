@@ -11,10 +11,12 @@ def get_input() -> List[str]:
 
 
 def io_test(memory, program_input, expected_output) -> None:
-    computer = IntCode(memory, program_input)
+    computer = IntCode(memory)
+    computer.add_input(program_input)
     computer.run()
-    if computer.outputs[0] != expected_output:
-        raise TestFailureException(f"ouput: {computer.outputs[0]} did not match expected output: {expected_output}")
+    actual_output = computer.next_output()
+    if actual_output != expected_output:
+        raise TestFailureException(f"ouput: {actual_output} did not match expected output: {expected_output}")
 
 
 if __name__ == "__main__":
