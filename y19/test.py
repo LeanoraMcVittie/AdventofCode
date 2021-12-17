@@ -30,7 +30,7 @@ if __name__ == "__main__":
         expected_output = [int(c) for c in expected_output.split(",")]
         computer = IntCode(memory)
         computer.run()
-        if computer.codes != expected_output:
+        if list(computer.memory.values()) != expected_output:
             print("Something's not right")
             print("Input:")
             print(memory)
@@ -39,7 +39,7 @@ if __name__ == "__main__":
             print(expected_output)
             print()
             print("Actual:")
-            print(computer.codes)
+            print(computer.memory)
             print()
             raise TestFailureException()
         i += 1
