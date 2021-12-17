@@ -2,7 +2,7 @@ from typing import Callable, Generator, List
 from functools import partial
 
 
-# Intcode problems: 02, 05, 07
+# This shows the state of IntCode at the time of solving day 7
 
 
 class WaitingOnInput(Exception):
