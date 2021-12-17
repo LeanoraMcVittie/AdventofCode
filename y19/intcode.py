@@ -45,8 +45,8 @@ class IntCode:
                 2: partial(self.operator, lambda x, y: x * y),
                 3: self.save_input,
                 4: self.output,
-                5: partial(self.jump, False),
-                6: partial(self.jump, True),
+                5: partial(self.jump, lambda x: x != 0),
+                6: partial(self.jump, lambda x: x == 0),
                 7: partial(self.compare, lambda x, y: x < y),
                 8: partial(self.compare, lambda x, y: x == y),
             }[self.codes[self.ip]%100]()
@@ -75,12 +75,12 @@ class IntCode:
         self.outputs.append(self.load(self.ip+1))
         self.ip += 2
 
-    def jump(self, on_zero: bool) -> None:
-        is_zero = self.load(self.ip+1) == 0
-        if (on_zero and is_zero) or (not on_zero and not is_zero):
-            self.ip = self.load(self.ip+2)
+    def jump(self, condition: Callable, num_args: int = 1) -> None:
+        args = [self.load(self.ip+i) for i in range(1,num_args+1)]
+        if condition(*args):
+            self.ip = self.load(self.ip + num_args + 1)
         else:
-            self.ip += 3
+            self.ip += num_args + 2
 
     def compare(self, comparator: Callable) -> None:
         store = 1 if comparator(self.load(self.ip+1), self.load(self.ip+2)) else 0
