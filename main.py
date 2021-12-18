@@ -21,7 +21,7 @@ if __name__ == "__main__":
 		end = datetime.now()
 		test_time = end-start
 		print(result)
-	except:
+	except FileNotFoundError:
 		pass
 
 	# run main

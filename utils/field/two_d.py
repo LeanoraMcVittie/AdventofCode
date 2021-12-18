@@ -17,9 +17,16 @@ class Field:
 		self.items = [
 			[
 				cell_class(x, y) for y in range(y_size)
-			] 
+			]
 			for x in range(x_size)
 		]
+		self.specialized_init()
+
+	@classmethod
+	def create_from_input(cls, input_lines: List[str], cell_class) -> "Field":
+		field = cls(len(input_lines), len(input_lines[0]), cell_class)
+		field.apply(transform=lambda x: x.set_value(input_lines[x.x][x.y]))
+		return field
 
 	def get(self, x: int, y: int, default: Any = None) -> Union[Optional[Cell], Any]:
 		if x < 0 or y < 0:
@@ -29,10 +36,12 @@ class Field:
 		except IndexError:
 			return default
 
+	def specialized_init(self): pass
+
 	def gen_adjacent_cells(
-		self, 
+		self,
 		cell: Cell,
-		include_diagonals: bool = True, 
+		include_diagonals: bool = True,
 		transform: Callable = lambda x: x,
 		filterer: Callable = lambda x: True,
 	) -> Generator[Cell, None, None]:
@@ -52,9 +61,9 @@ class Field:
 					yield transform(neighbor)
 
 	def apply_adjacent(
-		self, 
+		self,
 		cell: Cell,
-		include_diagonals: bool = True, 
+		include_diagonals: bool = True,
 		transform: Callable = lambda x: x,
 		filterer: Callable = lambda x: True,
 	) -> int:
@@ -67,8 +76,8 @@ class Field:
 		)
 
 	def gen_cells(
-		self, 
-		transform: Callable = lambda x: x, 
+		self,
+		transform: Callable = lambda x: x,
 		filterer: Callable = lambda x: True
 	) -> Generator[Cell, None, None]:
 		for x in range(len(self.items)):
@@ -78,8 +87,8 @@ class Field:
 
 
 	def apply(
-		self, 
-		transform: Callable = lambda x: x, 
+		self,
+		transform: Callable = lambda x: x,
 		filterer: Callable = lambda x: True
 	) -> None:
 		return len([cell for cell in self.gen_cells(transform, filterer)])
