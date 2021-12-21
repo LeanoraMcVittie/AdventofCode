@@ -27,7 +27,7 @@ def run(input_data: List[str]) -> int:
 		except Halted:
 			pass
 
-		final_output = amplifiers[4].last_output()
+		final_output = amplifiers[4].outputs[-1]
 		if final_output > max_thruster_signal:
 			max_thruster_signal = final_output
 

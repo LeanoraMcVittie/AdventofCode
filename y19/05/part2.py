@@ -1,11 +1,12 @@
 from typing import List
-from y19.intcode import IntCode
+from y19.intcode import IntCode, OutputClear
 
 def run(input_data: List[str]) -> int:
-	computer = IntCode(input_data[0], 5)
+	computer = IntCode(input_data[0])
+	computer.add_input(5)
 	computer.run()
-	outputs = computer.outputs
-	diagnostic_code = outputs.pop(-1)
-	if not outputs:
-		return diagnostic_code
-	print(outputs)
+	output = computer.next_output()
+	try: computer.next_output()
+	except OutputClear: pass
+	else: raise Exception("There should be exactly one output")
+	return output
