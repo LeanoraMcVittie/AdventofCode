@@ -2,7 +2,7 @@ from typing import Callable, Generator, List
 from functools import partial
 
 
-# Intcode problems: 02, 05, 07, 09, 11
+# Intcode problems: 02, 05, 07, 09, 11, 13
 
 
 class WaitingOnInput(Exception):
@@ -13,27 +13,43 @@ class Halted(Exception):
     pass
 
 
+class OutputClear(Exception):
+    pass
+
+
+class Output:
+    def __init__(self) -> None:
+        self.outputs = []
+        self.it = 0
+
+    def add(self, out: int) -> None:
+        self.outputs.append(out)
+
+    def next(self) -> int:
+        if self.it >= len(self.outputs): raise OutputClear()
+        output = self.outputs[self.it]
+        self.it += 1
+        return output
+
+    def get(self, index) -> int:
+        assert index < len(self.outputs)
+        return self.outputs[index]
+
+
 class IntCode:
     def __init__(self, memory_str: str, program_input__DEPRECATED: int = None) -> None:
         self.memory = {i: int(memory_str.split(",")[i]) for i in range(len(memory_str.split(",")))}
         self.ip = 0
         self.rb = 0
         self.input = [program_input__DEPRECATED] if program_input__DEPRECATED else []
-        self.outputs = []
+        self.output = Output()
         self.halted = False
-        self.output_gen = self.gen_output()
 
     def add_input(self, new_input: int) -> None:
         self.input.append(new_input)
 
     def next_output(self) -> int:
-        return next(self.output_gen)
-
-    def gen_output(self) -> Generator[int, None, None]:
-        i = 0
-        while True:
-            yield self.outputs[i]
-            i += 1
+        return self.output.next()
 
     def run(self) -> None:
         if self.halted:
@@ -45,7 +61,7 @@ class IntCode:
                 1: partial(self.operator, lambda x, y: x + y),
                 2: partial(self.operator, lambda x, y: x * y),
                 3: self.store_input,
-                4: self.output,
+                4: self.add_output,
                 5: partial(self.jump, lambda x: x != 0),
                 6: partial(self.jump, lambda x: x == 0),
                 7: partial(self.compare, lambda x, y: x < y),
@@ -89,8 +105,8 @@ class IntCode:
         self.store(self.ip+1, self.input.pop(0))
         self.ip += 2
 
-    def output(self) -> None:
-        self.outputs.append(self.load(self.ip+1))
+    def add_output(self) -> None:
+        self.output.add(self.load(self.ip+1))
         self.ip += 2
 
     def jump(self, condition: Callable, num_args: int = 1) -> None:
