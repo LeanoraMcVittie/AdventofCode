@@ -7,8 +7,24 @@ class Cell:
 		self.x = x
 		self.y = y
 
+	def __eq__(self, other) -> bool:
+		return (
+			isinstance(other, type(self))
+			and self.value == other.value
+			and self.x == other.x
+			and self.y == other.y
+		)
+
+	def __str__(self) -> str:
+		if not self.value: return "."
+		return str(self.value)
+
+	def __bool__(self) -> bool:
+		return self.value is not None
+
 	def set_value(self, value: Any) -> Any:
 		self.value = value
+
 
 class Field:
 	items: List[List[Cell]]
@@ -27,6 +43,16 @@ class Field:
 		field = cls(len(input_lines), len(input_lines[0]), cell_class)
 		field.apply(transform=lambda x: x.set_value(input_lines[x.x][x.y]))
 		return field
+
+	def __eq__(self, other: "Field") -> bool:
+		return (
+			isinstance(other, type(self))
+			and len(self.items) == len(other.items)
+			and len(self.items[0]) == len(other.items[0])
+			and all(
+				self.gen_cells(transform=lambda c: c == other.get(c.x, c.y))
+			)
+		)
 
 	def get(self, x: int, y: int, default: Any = None) -> Union[Optional[Cell], Any]:
 		if x < 0 or y < 0:
@@ -50,7 +76,7 @@ class Field:
 				neighbor = self.get(x, y)
 				if (
 					neighbor is not None
-					and neighbor != cell
+					and neighbor is not cell
 					and (
 						include_diagonals
 						or neighbor.x == cell.x
@@ -84,7 +110,6 @@ class Field:
 			for y in range(len(self.items[0])):
 				if filterer(self.items[x][y]):
 					yield transform(self.items[x][y])
-
 
 	def apply(
 		self,
@@ -129,6 +154,6 @@ class Field:
 	def print(self) -> None:
 		for x in range(len(self.items)):
 			for y in range(len(self.items[0])):
-				print(self.items[x][y].value, end="")
+				print(str(self.items[x][y]), end="")
 			print()
 		print()
