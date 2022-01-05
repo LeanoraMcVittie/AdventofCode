@@ -1,0 +1,5 @@
+Let this be a reminder to RTFM - wasted literal days because I missed rule #3 of amphipod movement. I have left in the (now) commented-out block of code that caused all the problems as the solution was literally as simple as commenting it out.
+
+I solved part1 by hand - no idea how I managed to do that without understanding point three, but I guess I got lucky
+
+Also my solution is pretty slow - takes about 15 seconds to run (better than the >1min with the commented-out section of code present) but I am so thoroughly done with this at this point I'm not going to bother to make it better
