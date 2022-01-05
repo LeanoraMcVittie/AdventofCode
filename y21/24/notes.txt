@@ -1,0 +1,2 @@
+Not the kind of puzzle I enjoy
+Code in part1 very effectively let me play with the inputs, doesn't actually work out the answer, which I did by hand
