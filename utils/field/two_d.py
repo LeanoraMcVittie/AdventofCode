@@ -1,11 +1,17 @@
-from typing import Any, Callable, Generator, List, Optional, Union
+from typing import Any, Callable, Generator, List, Optional, Tuple, Union
+from collections import namedtuple
 
 
-class Cell:
+class Coord:
 	def __init__(self, x: int, y: int) -> None:
-		self.value = None
 		self.x = x
 		self.y = y
+
+
+class Cell(Coord):
+	def __init__(self, x: int, y: int) -> None:
+		super(Cell, self).__init__(x, y)
+		self.value = None
 
 	def __eq__(self, other) -> bool:
 		return (
@@ -24,6 +30,19 @@ class Cell:
 
 	def set_value(self, value: Any) -> Any:
 		self.value = value
+
+	def cost(self) -> int:
+		return int(self.value)
+
+	def is_neighbor(self, coords: Coord, include_diagonals: bool = True) -> bool:
+		x_diff = abs(self.x - coords.x)
+		y_diff = abs(self.y - coords.y)
+		if x_diff > 1 or y_diff > 1: return False
+		if x_diff == 0 and y_diff == 0: return False
+		if x_diff == 0 or y_diff == 0: return True
+		return include_diagonals
+
+
 
 
 class Field:
