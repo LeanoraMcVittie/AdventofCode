@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from typing import Any, Callable, Generator, List, Optional, Tuple, Union
-from collections import namedtuple
+from heapq import heappush, heappop
 
 
 class Coord:
@@ -28,6 +30,9 @@ class Cell(Coord):
 	def __bool__(self) -> bool:
 		return self.value is not None
 
+	def __hash__(self) -> int:
+		return hash((self.value, self.x, self.y))
+
 	def set_value(self, value: Any) -> Any:
 		self.value = value
 
@@ -43,8 +48,6 @@ class Cell(Coord):
 		return include_diagonals
 
 
-
-
 class Field:
 	items: List[List[Cell]]
 
@@ -58,12 +61,12 @@ class Field:
 		self.specialized_init()
 
 	@classmethod
-	def create_from_input(cls, input_lines: List[str], cell_class) -> "Field":
+	def create_from_input(cls, input_lines: List[str], cell_class) -> Field:
 		field = cls(len(input_lines), len(input_lines[0]), cell_class)
 		field.apply(transform=lambda x: x.set_value(input_lines[x.x][x.y]))
 		return field
 
-	def __eq__(self, other: "Field") -> bool:
+	def __eq__(self, other: Field) -> bool:
 		return (
 			isinstance(other, type(self))
 			and len(self.items) == len(other.items)
@@ -87,8 +90,8 @@ class Field:
 		self,
 		cell: Cell,
 		include_diagonals: bool = True,
-		transform: Callable = lambda x: x,
-		filterer: Callable = lambda x: True,
+		transform: Callable[[Cell], Any] = lambda x: x,
+		filterer: Callable[[Cell], bool] = lambda x: True,
 	) -> Generator[Cell, None, None]:
 		for x in range(cell.x-1, cell.x+2):
 			for y in range(cell.y-1, cell.y+2):
@@ -109,8 +112,8 @@ class Field:
 		self,
 		cell: Cell,
 		include_diagonals: bool = True,
-		transform: Callable = lambda x: x,
-		filterer: Callable = lambda x: True,
+		transform: Callable[[Cell], Any] = lambda x: x,
+		filterer: Callable[[Cell], bool] = lambda x: True,
 	) -> int:
 		return len(
 			[
@@ -122,8 +125,8 @@ class Field:
 
 	def gen_cells(
 		self,
-		transform: Callable = lambda x: x,
-		filterer: Callable = lambda x: True
+		transform: Callable[[Cell], Any] = lambda x: x,
+		filterer: Callable[[Cell], bool] = lambda x: True
 	) -> Generator[Cell, None, None]:
 		for x in range(len(self.items)):
 			for y in range(len(self.items[0])):
@@ -132,19 +135,19 @@ class Field:
 
 	def apply(
 		self,
-		transform: Callable = lambda x: x,
-		filterer: Callable = lambda x: True
+		transform: Callable[[Cell], Any] = lambda x: x,
+		filterer: Callable[[Cell], bool] = lambda x: True
 	) -> None:
 		return len([cell for cell in self.gen_cells(transform, filterer)])
 
 
-	def clone(self, for_rotating: bool = False) -> "Field":
+	def clone(self, for_rotating: bool = False) -> Field:
 		x_size = len(self.items) if for_rotating else len(self.items[0])
 		y_size = len(self.items[0]) if for_rotating else len(self.items)
 		new_field = type(self)(y_size, x_size, type(self.items[0][0]))
 		return new_field
 
-	def rotate(self) -> "Field":
+	def rotate(self) -> Field:
 		# clockwise
 		rotated_field = self.clone(for_rotating=True)
 		rotated_field.apply(
@@ -152,7 +155,7 @@ class Field:
 		)
 		return rotated_field
 
-	def switch_top_bottom(self) -> "Field":
+	def switch_top_bottom(self) -> Field:
 		flipped_field = self.clone()
 		flipped_field.apply(
 			transform=lambda x: x.set_value(
@@ -161,7 +164,7 @@ class Field:
 		)
 		return flipped_field
 
-	def switch_left_right(self) -> "Field":
+	def switch_left_right(self) -> Field:
 		flipped_field = self.clone()
 		flipped_field.apply(
 			transform=lambda x: x.set_value(
@@ -169,6 +172,42 @@ class Field:
 			)
 		)
 		return flipped_field
+
+	def dijkstra(
+		self,
+		start: Cell,
+		end: Cell,
+		include_diagonals: bool = True,
+		filterer: Callable[[Cell], bool] = lambda x : True,
+	) -> Tuple[Optional[int], Optional[List[Cell]]]:
+		unvisited = {i: [] for i in self.gen_cells()}
+		it = 0
+		unvisited[start] = [start]
+		reachable = [(0, it, start)]
+		while reachable:
+			cost_to_current, _, current = heappop(reachable)
+			if current not in unvisited: continue
+
+			path_to_current = unvisited[current]
+			if current is end:
+				return cost_to_current, path_to_current
+
+			neighbors = self.gen_adjacent_cells(
+				current,
+				include_diagonals=include_diagonals,
+				filterer=filterer,
+			)
+			for neighbor in neighbors:
+				if neighbor not in unvisited: continue
+				cost = cost_to_current + neighbor.cost()
+				path = unvisited[neighbor]
+				if path and sum(c.cost() for c in path) < cost: continue
+				path = path_to_current + [neighbor]
+				unvisited[neighbor] = path
+				it += 1
+				heappush(reachable, (cost, it, neighbor))
+			del unvisited[current]
+		return None, None
 
 	def print(self) -> None:
 		for x in range(len(self.items)):
