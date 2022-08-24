@@ -26,7 +26,8 @@ class IO:
         self.io.append(item)
 
     def next(self) -> int:
-        if self.it >= len(self.io): raise self.ExceptionType()
+        if self.it >= len(self.io):
+            raise self.ExceptionType()
         n = self.io[self.it]
         self.it += 1
         return n
@@ -39,13 +40,16 @@ class IO:
 class Output(IO):
     ExceptionType = OutputClear
 
+
 class Input(IO):
     ExceptionType = WaitingOnInput
 
 
 class IntCode:
     def __init__(self, memory_str: str) -> None:
-        self.memory = {i: int(memory_str.split(",")[i]) for i in range(len(memory_str.split(",")))}
+        self.memory = {
+            i: int(memory_str.split(",")[i]) for i in range(len(memory_str.split(",")))
+        }
         self.ip = 0
         self.rb = 0
         self.input = Input()
@@ -66,7 +70,7 @@ class IntCode:
             raise Halted()
 
         while self.memory[self.ip] != 99:
-            self.modes = list(str(int(self.memory[self.ip]/100)).zfill(3))
+            self.modes = list(str(int(self.memory[self.ip] / 100)).zfill(3))
             {
                 1: partial(self.operator, lambda x, y: x + y),
                 2: partial(self.operator, lambda x, y: x * y),
@@ -76,8 +80,8 @@ class IntCode:
                 6: partial(self.jump, lambda x: x == 0),
                 7: partial(self.compare, lambda x, y: x < y),
                 8: partial(self.compare, lambda x, y: x == y),
-                9: self.base
-            }[self.memory[self.ip]%100]()
+                9: self.base,
+            }[self.memory[self.ip] % 100]()
 
         self.halted = True
 
@@ -105,30 +109,30 @@ class IntCode:
             raise ValueError(f"{mode} is not a valid mode for writing")
 
     def operator(self, transform: Callable) -> None:
-        value = transform(self.load(self.ip+1), self.load(self.ip+2))
-        self.store(self.ip+3, value)
+        value = transform(self.load(self.ip + 1), self.load(self.ip + 2))
+        self.store(self.ip + 3, value)
         self.ip += 4
 
     def store_input(self) -> None:
-        self.store(self.ip+1, self.input.next())
+        self.store(self.ip + 1, self.input.next())
         self.ip += 2
 
     def add_output(self) -> None:
-        self.output.add(self.load(self.ip+1))
+        self.output.add(self.load(self.ip + 1))
         self.ip += 2
 
     def jump(self, condition: Callable, num_args: int = 1) -> None:
-        args = [self.load(self.ip+i) for i in range(1,num_args+1)]
+        args = [self.load(self.ip + i) for i in range(1, num_args + 1)]
         if condition(*args):
             self.ip = self.load(self.ip + num_args + 1)
         else:
             self.ip += num_args + 2
 
     def compare(self, comparator: Callable) -> None:
-        store = 1 if comparator(self.load(self.ip+1), self.load(self.ip+2)) else 0
-        self.store(self.ip+3, store)
+        store = 1 if comparator(self.load(self.ip + 1), self.load(self.ip + 2)) else 0
+        self.store(self.ip + 3, store)
         self.ip += 4
 
     def base(self) -> None:
-        self.rb += self.load(self.ip+1)
+        self.rb += self.load(self.ip + 1)
         self.ip += 2
