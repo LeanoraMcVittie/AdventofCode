@@ -3,6 +3,7 @@ from __future__ import annotations
 from typing import Any, Callable, Generator, List, Optional, Tuple, Union
 from heapq import heappush, heappop
 from dataclasses import dataclass
+from xml.etree.ElementInclude import include
 
 
 @dataclass
@@ -52,6 +53,16 @@ class Cell(Coord):
             return True
         return include_diagonals
 
+    def neighbor_coords(self, include_diagonals: bool = True) -> List[Coord]:
+        neighbors = []
+        for x in range(self.x - 1, self.x + 2):
+            for y in range(self.y - 1, self.y + 2):
+                if not (x == self.x and y == self.y) and (
+                    include_diagonals or x == self.x or y == self.y
+                ):
+                    neighbors.append(Coord(x, y))
+        return neighbors
+
 
 class Field:
     items: List[List[Cell]]
@@ -92,20 +103,10 @@ class Field:
         transform: Callable[[Cell], Any] = lambda x: x,
         filterer: Callable[[Cell], bool] = lambda x: True,
     ) -> Generator[Cell, None, None]:
-        for x in range(cell.x - 1, cell.x + 2):
-            for y in range(cell.y - 1, cell.y + 2):
-                neighbor = self.get(x, y)
-                if (
-                    neighbor is not None
-                    and neighbor is not cell
-                    and (
-                        include_diagonals
-                        or neighbor.x == cell.x
-                        or neighbor.y == cell.y
-                    )
-                    and filterer(neighbor)
-                ):
-                    yield transform(neighbor)
+        for n in cell.neighbor_coords(include_diagonals):
+            neighbor = self.get(n.x, n.y)
+            if neighbor is not None and neighbor is not cell and filterer(neighbor):
+                yield transform(neighbor)
 
     def apply_adjacent(
         self,
@@ -139,6 +140,18 @@ class Field:
         filterer: Callable[[Cell], bool] = lambda x: True,
     ) -> None:
         return len([cell for cell in self.gen_cells(transform, filterer)])
+
+    def first(self, **kwargs) -> Optional[Cell]:
+        try:
+            return next(self.gen_cells(**kwargs))
+        except StopIteration:
+            return None
+
+    def first_adjacent(self, **kwargs) -> Optional[Cell]:
+        try:
+            return next(self.gen_adjacent_cells(**kwargs))
+        except StopIteration:
+            return None
 
     def clone(self, for_rotating: bool = False) -> Field:
         x_size = len(self.items) if for_rotating else len(self.items[0])
@@ -205,11 +218,9 @@ class Field:
             neighbors = self.gen_adjacent_cells(
                 current,
                 include_diagonals=include_diagonals,
-                filterer=filterer,
+                filterer=lambda n: n in unvisited and filterer(n),
             )
             for neighbor in neighbors:
-                if neighbor not in unvisited:
-                    continue
                 cost = cost_to_current + neighbor.cost()
                 path = unvisited[neighbor]
                 if path and sum(c.cost() for c in path) < cost:

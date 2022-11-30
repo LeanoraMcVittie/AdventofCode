@@ -1,0 +1,14 @@
+I changed the input so that the ordering of the portals didn't matter
+In the input I was given, there were portals NO and ON - I didn't want
+to deal with ordering issues so I altered the input to change the ON 
+portals to XN portals
+
+I also changed the input so that for part2 I'd have an easier time
+identifying inside and outside portals with 'i' and 'o' indicators
+next to the portals. This seemed faster and easier and less annoying
+than trying to determine which were which programatically based on cell
+coordinates or whatever
+
+Is altering the input "cheating"? Not in my opinion, but yours may differ
+
+Overall I really enjoyed this one

@@ -1,10 +1,14 @@
 from typing import Any, Callable, Dict, List
 
 
-def get_input(module: str, prefix: str = "") -> List[str]:
+def get_input(
+    module: str, prefix: str = "", keep_whitespace: bool = False
+) -> List[str]:
     prefix += "_" if prefix else ""
     with open(f"{module}/{prefix}input.txt", "r") as input_file:
         values: List[str] = input_file.readlines()
+    if keep_whitespace:
+        return values
     return [v.strip() for v in values]
 
 
