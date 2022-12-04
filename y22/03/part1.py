@@ -8,8 +8,8 @@ def char_val(c: str) -> int:
 def run(input_data: List[str]) -> int:
 	count = 0
 	for d in input_data:
-		one = d[:int(len(d)/2)]
-		two = d[int(len(d)/2):]
+		one = d[:len(d)//2]
+		two = d[len(d)//2:]
 		for c in one:
 			if c in two:
 				count += char_val(c)
