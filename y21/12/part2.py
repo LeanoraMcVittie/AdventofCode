@@ -39,6 +39,6 @@ class CaveMap:
 	def get_start(self) -> Cave:
 		return self.caves["start"]
 
-def run(input_data: List[str]) -> int:
+def run(input_data: List[str], **kwargs) -> int:
 	caves = CaveMap(input_data)
 	return caves.traverse(caves.get_start())

@@ -1,6 +1,6 @@
 from typing import List
 
-def run(input_data: List[str]) -> int:
+def run(input_data: List[str], **kwargs) -> int:
 	count = 0
 	for d in input_data:
 		r1, r2 = d.split(",")

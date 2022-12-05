@@ -65,7 +65,7 @@ class AsteroidBelt(Field):
 		print()
 
 
-def run(input_data: List[str]) -> int:
+def run(input_data: List[str], **kwargs) -> int:
 	asteroid_field = AsteroidBelt.create_from_input(input_data, Spot)
 	asteroid_field.set_asteroid_view_counts()
 	all_asteroids = asteroid_field.gen_cells(filterer=lambda x: x.value)

@@ -15,7 +15,7 @@ class Layer:
 	def result(self) -> int:
 		return self.layer_str.count("1") * self.layer_str.count("2")
 
-def run(input_data: List[str]) -> int:
+def run(input_data: List[str], **kwargs) -> int:
 	image = input_data[0]
 	layers = []
 

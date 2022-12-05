@@ -51,7 +51,7 @@ class Heightmap(Field):
 		]
 
 
-def run(input_data: List[str]) -> int:
+def run(input_data: List[str], **kwargs) -> int:
 	heightmap = Heightmap(input_data)
 	basins = heightmap.get_basin_sizes()
 	basins.sort(reverse=True)

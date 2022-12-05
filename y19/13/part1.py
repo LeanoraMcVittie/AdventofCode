@@ -20,7 +20,7 @@ class Game:
 		except OutputClear: pass
 		return list(self.tiles.values()).count(2)
 
-def run(input_data: List[str]) -> int:
+def run(input_data: List[str], **kwargs) -> int:
 	game = Game(input_data[0])
 	game.play_game()
 	return game.mark_tiles()

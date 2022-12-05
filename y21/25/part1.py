@@ -29,7 +29,7 @@ class SeaCucumbers(Field):
 		return moved
 
 
-def run(input_data: List[str]) -> int:
+def run(input_data: List[str], **kwargs) -> int:
 	sea_cucumbers_next = SeaCucumbers.create_from_input(input_data, CucumberSpot)
 	sea_cucumbers_prev = None
 	i: int = 0

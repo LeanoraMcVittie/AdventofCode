@@ -5,7 +5,7 @@ from y19.intcode import IntCode
 # It was much more fun to work this out by hand than to
 # try and figure out how to do it programmatically and
 # I'm in this for the fun - so I worked it out by hand
-def run(input_data: List[str]) -> int:
+def run(input_data: List[str], **kwargs) -> int:
 	vaccuum_robot = IntCode('2' + input_data[0][1:])
 	routine = "B,A,B,C,A,C,A,B,C,A"
 	A = "L,10,L,8,R,12"

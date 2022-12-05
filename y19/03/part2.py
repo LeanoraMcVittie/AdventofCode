@@ -27,7 +27,7 @@ def get_line_positions(directions: str) -> List[Tuple[int, int]]:
 	return positions
 
 
-def run(input_data: List[str]) -> int:
+def run(input_data: List[str], **kwargs) -> int:
 	line1_positions = get_line_positions(input_data[0])
 	line2_positions = get_line_positions(input_data[1])
 	crossing_positions = set.intersection(set(line1_positions), set(line2_positions))

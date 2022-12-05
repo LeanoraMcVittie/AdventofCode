@@ -36,7 +36,7 @@ class Paper(Field):
 			print()
 
 
-def run(input_data: List[str]) -> int:
+def run(input_data: List[str], **kwargs) -> int:
 	coordinates = []
 	i = 0
 	while input_data[i] != "":

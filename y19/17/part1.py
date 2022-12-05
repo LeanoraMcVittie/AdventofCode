@@ -3,7 +3,7 @@ from y19.intcode import IntCode, OutputClear
 from utils.field.two_d import Cell, Field
 
 
-def run(input_data: List[str]) -> int:
+def run(input_data: List[str], **kwargs) -> int:
 	vaccuum_robot = IntCode(input_data[0])
 	vaccuum_robot.run()
 	scaffolding_input = []

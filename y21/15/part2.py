@@ -29,6 +29,6 @@ class Cave(Field):
 			c.value = unadjusted_value if unadjusted_value else 9
 
 
-def run(input_data: List[str]) -> int:
+def run(input_data: List[str], **kwargs) -> int:
 	cave = Cave(input_data)
 	return DPPathing(len(input_data)*5).pathfind(cave)

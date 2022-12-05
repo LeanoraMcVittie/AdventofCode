@@ -13,7 +13,7 @@ def check_passport(passport_data: List[str]) -> int:
 	return 0
 	
 
-def run(input_data: List[str]) -> int:
+def run(input_data: List[str], **kwargs) -> int:
 	passport: List[str] = []
 	valid_passports: int = 0
 	for datum in input_data:

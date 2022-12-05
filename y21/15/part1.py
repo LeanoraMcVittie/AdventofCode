@@ -17,5 +17,5 @@ class DPPathing(Field):
 		return self.items[size][size].value
 
 
-def run(input_data: List[str]) -> int:
+def run(input_data: List[str], **kwargs) -> int:
 	return DPPathing(len(input_data)).pathfind(input_data)

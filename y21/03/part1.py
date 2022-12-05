@@ -26,7 +26,7 @@ class Counter:
 			return "0"
 		return "1"
 
-def run(input_data: List[str]) -> int:
+def run(input_data: List[str], **kwargs) -> int:
 	counters = [Counter() for i in range(0, len(input_data[0].strip()))]
 	for datum in input_data:
 		datum = datum.strip()

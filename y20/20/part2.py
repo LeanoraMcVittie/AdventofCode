@@ -255,7 +255,7 @@ class Puzzle(Field):
 					snakes += 1
 		return snakes
 
-def run(input_data: List[str]) -> int:
+def run(input_data: List[str], **kwargs) -> int:
 	puzzle = Puzzle.create_from_input_data(input_data)
 	transforms = [
 		"rotate", 

@@ -93,6 +93,6 @@ class Puzzle(Field):
 
 
 
-def run(input_data: List[str]) -> int:
+def run(input_data: List[str], **kwargs) -> int:
 	puzzle = Puzzle(input_data)
 	return product(puzzle.get_corners())

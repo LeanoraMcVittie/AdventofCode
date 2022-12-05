@@ -1,6 +1,6 @@
 from typing import List
 
-def run(input_data: List[str]) -> int:
+def run(input_data: List[str], **kwargs) -> int:
 	crabs = [int(c) for c in input_data[0].split(",")]
 	crabs.sort(reverse=True)
 	max_crab = crabs[0] + 1

@@ -55,7 +55,7 @@ def shortest_find_all_remaining_keys(
 	return min_length
 
 
-def run(input_data: List[str]) -> int:
+def run(input_data: List[str], **kwargs) -> int:
 	vault = Field.create_from_input(input_data, Loc)
 	key_locs = [l for l in vault.gen_cells(filterer=lambda x: x.value.islower())]
 	start = next(vault.gen_cells(filterer=lambda x: x.value == "@"))

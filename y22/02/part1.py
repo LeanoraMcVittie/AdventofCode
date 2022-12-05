@@ -15,7 +15,7 @@ SHAPE_SCORE = {
 	"scissors": 3,
 }
 
-def run(input_data: List[str]) -> int:
+def run(input_data: List[str], **kwargs) -> int:
 	points = 0
 	for d in input_data:
 		opp, me = d.split(" ")

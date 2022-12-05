@@ -20,7 +20,7 @@ class Mask:
 		return int(str.join("", binary_list), base=2)
 
 
-def run(input_data: List[str]) -> int:
+def run(input_data: List[str], **kwargs) -> int:
 	memory = [0] * 100000
 	mask: Mask = None
 	for datum in input_data:

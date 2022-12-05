@@ -131,7 +131,7 @@ class Scanner:
 		return None
 
 
-def run(input_data: List[str]) -> int:
+def run(input_data: List[str], **kwargs) -> int:
 	index = 0
 	all_scanners = []
 	while index < len(input_data):

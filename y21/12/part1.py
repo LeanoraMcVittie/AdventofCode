@@ -31,7 +31,7 @@ def traverse(start_cave: Cave) -> int:
 	return paths
 
 
-def run(input_data: List[str]) -> int:
+def run(input_data: List[str], **kwargs) -> int:
 	caves = create_map(input_data)
 	start_cave = caves["start"]
 	return traverse(start_cave)

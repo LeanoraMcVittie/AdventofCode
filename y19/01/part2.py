@@ -2,7 +2,7 @@ from typing import List
 
 
 # 51316
-def run(input_data: List[str]) -> int:
+def run(input_data: List[str], **kwargs) -> int:
 	total = 0
 	for datum in input_data:
 		added_fuel = int(int(datum)/3) - 2

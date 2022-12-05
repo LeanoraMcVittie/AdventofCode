@@ -134,7 +134,7 @@ class Field:
 		return sum(1 for cube in self.gen_cells(filterer = lambda x: x.value))
 
 
-def run(input_data: List[str]) -> int:
+def run(input_data: List[str], **kwargs) -> int:
 	gamefield = Field.create_from_input(input_data)
 	for _ in range(6):
 		gamefield = Field.cycle(gamefield)

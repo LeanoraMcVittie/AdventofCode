@@ -57,7 +57,7 @@ class Game:
 		return max(total_p1_wins, total_p2_wins)
 
 
-def run(input_data: List[str]) -> int:
+def run(input_data: List[str], **kwargs) -> int:
 	_, p1 = input_data[0].split(": ")
 	_, p2 = input_data[1].split(": ")
 	game = Game(int(p1), int(p2))

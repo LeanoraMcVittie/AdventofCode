@@ -45,7 +45,7 @@ def find_rating_value(possible_values: List[str], most_common: bool) -> int:
 		if len(possible_values) == 1:
 			return int(possible_values[0], base=2)
 
-def run(input_data: List[str]) -> int:
+def run(input_data: List[str], **kwargs) -> int:
 	oxygen_generator_val: int = find_rating_value(
 		[datum.strip() for datum in input_data],
 		True,

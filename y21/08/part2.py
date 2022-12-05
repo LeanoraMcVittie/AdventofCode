@@ -88,7 +88,7 @@ def decode(inputs: List[str]) -> Dict[str, int]:
 	}
 
 
-def run(input_data: List[str]) -> int:
+def run(input_data: List[str], **kwargs) -> int:
 	total = 0
 	for datum in input_data:
 		inputs, outputs = datum.split(" | ")

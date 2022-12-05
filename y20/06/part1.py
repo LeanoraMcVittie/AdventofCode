@@ -1,6 +1,6 @@
 from typing import List
 
-def run(input_data: List[str]) -> int:
+def run(input_data: List[str], **kwargs) -> int:
 	total: int = 0
 	letters: List[str] = []
 	for datum in input_data:

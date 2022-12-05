@@ -45,7 +45,7 @@ class Field:
 				basin_size += self.get_basin_size(i, j)
 		return basin_size
 
-def run(input_data: List[str]) -> int:
+def run(input_data: List[str], **kwargs) -> int:
 	field = Field(input_data)
 	largest_basins = [0, 0, 0]
 	for i in range(len(input_data)):

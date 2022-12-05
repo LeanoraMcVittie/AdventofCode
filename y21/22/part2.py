@@ -115,7 +115,7 @@ class Region:
 	def total(self) -> int:
 		return (1+self.maxx-self.minx) * (1+self.maxy-self.miny) * (1+self.maxz-self.minz)
 
-def run(input_data: List[str]) -> int:
+def run(input_data: List[str], **kwargs) -> int:
 	on_regions = []
 	for datum in input_data:
 		setting, coords_str = datum.split(" ")

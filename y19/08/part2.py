@@ -6,7 +6,7 @@ class Layer:
 	cols = 25
 	rows = 6
 
-def run(input_data: List[str]) -> int:
+def run(input_data: List[str], **kwargs) -> int:
 	image = input_data[0]
 	layers = []
 

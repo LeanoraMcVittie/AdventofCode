@@ -1,6 +1,5 @@
 import sys
 from importlib import import_module
-from tkinter import W
 from utils.utils import get_input
 from datetime import datetime
 
@@ -23,7 +22,7 @@ if __name__ == "__main__":
         input_data = get_input(module, prefix="test", keep_whitespace=keep_whitespace)
 
         start = datetime.now()
-        result = script.run(input_data)
+        result = script.run(input_data, is_test=True)
         end = datetime.now()
         test_time = end - start
         print(result)
@@ -33,7 +32,7 @@ if __name__ == "__main__":
     if not test or test == "m":
         input_data = get_input(module, keep_whitespace=keep_whitespace)
         start = datetime.now()
-        result = script.run(input_data)
+        result = script.run(input_data, is_test=False)
         end = datetime.now()
         input_time = end - start
         print(result)

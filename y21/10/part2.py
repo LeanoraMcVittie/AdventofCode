@@ -29,7 +29,7 @@ def parse_chunk(chunk: str) -> int:
 		}[stack.pop(-1)]
 	return score
 
-def run(input_data: List[str]) -> int:
+def run(input_data: List[str], **kwargs) -> int:
 	scores = [parse_chunk(datum) for datum in input_data]
 	scores = [score for score in filter(lambda x: x != 0, scores)]
 	scores.sort()

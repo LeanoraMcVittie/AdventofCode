@@ -31,7 +31,7 @@ def move(cup, cups_list, max_val) -> Cup:
 	return cup.clockwise
 
 
-def run(input_data: List[str]) -> int:
+def run(input_data: List[str], **kwargs) -> int:
 	cups_data = input_data[0]
 	cups_list = [None for _ in range(10)]
 	first_cup = None

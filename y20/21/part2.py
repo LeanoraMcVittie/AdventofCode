@@ -29,7 +29,7 @@ class Allergen:
 		return False
 
 
-def run(input_data: List[str]) -> int:
+def run(input_data: List[str], **kwargs) -> int:
 	allergens_dict = {}
 	all_ingredients = {} 
 	for datum in input_data:

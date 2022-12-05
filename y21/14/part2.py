@@ -1,7 +1,7 @@
 from typing import List
 import itertools as it
 
-def run(input_data: List[str]) -> int:
+def run(input_data: List[str], **kwargs) -> int:
 	start_string = input_data[0]
 	all_letters = set(list(start_string))
 

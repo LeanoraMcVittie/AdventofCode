@@ -12,7 +12,7 @@ class Allergen:
 			self.possible_ingredients = self.possible_ingredients.intersection(ingredients)
 
 
-def run(input_data: List[str]) -> int:
+def run(input_data: List[str], **kwargs) -> int:
 	allergens_dict = {}
 	all_ingredients = {} 
 	for datum in input_data:

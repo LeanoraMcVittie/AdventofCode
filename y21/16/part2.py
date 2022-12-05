@@ -72,7 +72,7 @@ class Message:
 		return index, packet
 
 
-def run(input_data: List[str]) -> int:
+def run(input_data: List[str], **kwargs) -> int:
 	bin_str = str(bin(int(input_data[0], base=16)))[2:].zfill(len(input_data[0])*4)
 	Message.packets = []
 	_, packet = Message().parse_packets(bin_str)

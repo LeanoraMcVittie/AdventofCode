@@ -8,7 +8,7 @@ def is_valid_password(minimum: int, maximum: int, letter: str, password: str) ->
 		return False
 	return True
 
-def run(input_data: List[str]) -> int:
+def run(input_data: List[str], **kwargs) -> int:
 	total_valid: int = 0
 	for datum in input_data:
 		range_seg, char_seg, password = datum.split()

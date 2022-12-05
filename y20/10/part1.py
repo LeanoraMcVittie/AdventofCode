@@ -1,6 +1,6 @@
 from typing import List
 
-def run(input_data: List[str]) -> int:
+def run(input_data: List[str], **kwargs) -> int:
 	data = [int(datum) for datum in input_data]
 	data.append(0)
 	data.append(max(data) + 3)

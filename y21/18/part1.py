@@ -168,7 +168,7 @@ class SnailfishNum:
 		print(f"{self}")
 
 
-def run(input_data: List[str]) -> int:
+def run(input_data: List[str], **kwargs) -> int:
 	print(input_data[0])
 	snailfish_number = SnailfishNum.create_from_string(input_data.pop(0))
 	for next_num in input_data:

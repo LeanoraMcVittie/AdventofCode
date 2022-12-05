@@ -38,6 +38,6 @@ class Map:
 
 
 
-def run(input_data: List[str]) -> int:
+def run(input_data: List[str], **kwargs) -> int:
 	map = Map(input_data)
 	return map.get_distance("YOU", "SAN")

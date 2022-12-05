@@ -51,7 +51,7 @@ class Robot:
 			pass
 
 
-def run(input_data: List[str]) -> int:
+def run(input_data: List[str], **kwargs) -> int:
 	robot = Robot(input_data[0])
 	robot.run()
 	return len(robot.panels)

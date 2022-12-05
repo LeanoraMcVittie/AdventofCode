@@ -11,7 +11,7 @@ def check_slope(right: int, down: int, data: List[str]) -> int:
 		xloc += right
 	return trees
 
-def run(input_data: List[str]) -> int:
+def run(input_data: List[str], **kwargs) -> int:
 	slope1: int = check_slope(1, 1, input_data)
 	slope2: int = check_slope(3, 1, input_data)
 	slope3: int = check_slope(5, 1, input_data)

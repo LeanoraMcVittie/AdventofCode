@@ -71,7 +71,7 @@ class Ship:
 	def manhattan_distance(self) -> int:
 		return abs(self.east) + abs(self.north)
 
-def run(input_data: List[str]) -> int:
+def run(input_data: List[str], **kwargs) -> int:
 	ship = Ship()
 	for datum in input_data:
 		ship.follow_instruction(Instruction(datum))

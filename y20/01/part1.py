@@ -10,7 +10,7 @@ def find_2020(values: List[int]) -> str:
 				break
 	return "error"
 
-def run(input_data: List[str]) -> str:
+def run(input_data: List[str], **kwargs) -> str:
 	values = [int(val) for val in input_data]
 	values.sort()
 	return find_2020(values)

@@ -34,7 +34,7 @@ class Board:
 		return sum(self.unmarked) * winning_ball
 
 
-def run(input_data: List[str]) -> int:
+def run(input_data: List[str], **kwargs) -> int:
 	balls: List[int] = [int(num) for num in input_data[0].split(",")]
 	boards: List[Board] = []
 	wins: int = 0

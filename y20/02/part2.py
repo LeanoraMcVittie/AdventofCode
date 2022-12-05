@@ -9,7 +9,7 @@ def is_valid_password(first_pos: int, second_pos: int, letter: str, password: st
 		return False
 	return True
 
-def run(input_data: List[str]) -> int:
+def run(input_data: List[str], **kwargs) -> int:
 	total_valid: int = 0
 	for datum in input_data:
 		range_seg, char_seg, password = datum.split()

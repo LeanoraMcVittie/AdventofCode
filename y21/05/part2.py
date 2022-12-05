@@ -46,7 +46,7 @@ class Field:
 				self.overlaps += 1
 
 
-def run(input_data: List[str]) -> int:
+def run(input_data: List[str], **kwargs) -> int:
 	lines: List[Line] = [Line(datum) for datum in input_data]
 	field = Field()
 	for line in lines:

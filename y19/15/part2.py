@@ -180,7 +180,7 @@ class Oxygen:
 		return self.field.dijkstra(self.start_cell, self.oxygen_cell).cost
 
 
-def run(input_data: List[str]) -> int:
+def run(input_data: List[str], **kwargs) -> int:
 	droid = Droid(input_data[0])
 	oxygen = Oxygen(droid)
 	oxygen.map()

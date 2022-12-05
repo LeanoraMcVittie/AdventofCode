@@ -1,6 +1,6 @@
 from typing import List
 
-def run(input_data: List[str]) -> int:
+def run(input_data: List[str], **kwargs) -> int:
 	time = int(input_data[0])
 	busses = input_data[1].split(",")
 	min_time = time * 2

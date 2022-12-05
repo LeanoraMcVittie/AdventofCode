@@ -34,7 +34,7 @@ def max_y_pos(y_velocity):
 		y_velocity -= 1
 	return pos
 
-def run(input_data: List[str]) -> int:
+def run(input_data: List[str], **kwargs) -> int:
 	x_range, y_range = input_data[0][15:].split(", y=")
 	min_x, max_x = x_range.split("..")
 	min_y, max_y = y_range.split("..")

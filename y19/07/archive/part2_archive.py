@@ -2,7 +2,7 @@ from typing import List
 import itertools as it
 from y19.intcode import Halted, IntCode, WaitingOnInput
 
-def run(input_data: List[str]) -> int:
+def run(input_data: List[str], **kwargs) -> int:
 	memory = input_data[0]
 	max_thruster_signal = 0
 	for phase_settings in it.permutations(range(5, 10)):

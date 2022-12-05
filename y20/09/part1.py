@@ -12,7 +12,7 @@ def can_sum(total: int, values: List[str]) -> bool:
 	return False
 
 
-def run(input_data: List[str]) -> int:
+def run(input_data: List[str], **kwargs) -> int:
 	for i in range(PREAMBLE_LENGTH, len(input_data)):
 		if not can_sum(
 			int(input_data[i]), [int(input_data[j]) for j in range(i-PREAMBLE_LENGTH, i)]

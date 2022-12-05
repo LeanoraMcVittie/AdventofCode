@@ -18,7 +18,7 @@ def get_unsummable(input_data: List[int]) -> int:
 			return i
 	return -1
 
-def run(input_data: List[str]) -> int:
+def run(input_data: List[str], **kwargs) -> int:
 	input_data = [int(datum) for datum in input_data]
 	unsummable_index = get_unsummable(input_data)
 	unsummable = input_data[unsummable_index]

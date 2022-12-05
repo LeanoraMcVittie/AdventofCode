@@ -1,7 +1,7 @@
 from typing import List
 from y19.intcode import IntCode
 
-def run(input_data: List[str]) -> int:
+def run(input_data: List[str], **kwargs) -> int:
 	count = 0
 	for i in range(0, 50):
 		for j in range(0, 50):

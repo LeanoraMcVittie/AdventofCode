@@ -1,6 +1,6 @@
 from typing import List
 
-def run(input_data: List[str]) -> int:
+def run(input_data: List[str], **kwargs) -> int:
 	max_id: int = 0
 	for boarding_pass in input_data:
 		row: int = int(boarding_pass[:7].replace("F", "0").replace("B", "1"), base=2)

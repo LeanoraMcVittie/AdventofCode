@@ -33,7 +33,7 @@ RES_SCORE = {
 	"win": 6,
 }
 
-def run(input_data: List[str]) -> int:
+def run(input_data: List[str], **kwargs) -> int:
 	points = 0
 	for d in input_data:
 		opp, res = d.split(" ")

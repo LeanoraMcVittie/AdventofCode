@@ -53,7 +53,7 @@ class OctopodesField(Field):
 			print()
 
 
-def run(input_data: List[str]) -> int:
+def run(input_data: List[str], **kwargs) -> int:
 	octopodes = OctopodesField(input_data)
 	num_flashes = 0
 	for _ in range(100): num_flashes += octopodes.cycle()

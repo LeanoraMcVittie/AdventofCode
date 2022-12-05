@@ -103,7 +103,7 @@ class Passport:
 		return True
 
 
-def run(input_data: List[str]) -> int:
+def run(input_data: List[str], **kwargs) -> int:
 	passport_data: List[str] = []
 	passports: List[Passport] = []
 	for datum in input_data:

@@ -1,6 +1,6 @@
 from typing import List
 
-def run(input_data: List[str]) -> int:
+def run(input_data: List[str], **kwargs) -> int:
 	lanternfish = [int(datum) for datum in input_data[0].split(",")]
 	lanternfish_counts = [lanternfish.count(i) for i in range(0, 9)]
 	for i in range(0, 256):

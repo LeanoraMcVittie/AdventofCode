@@ -64,7 +64,7 @@ class Game:
             print()
 
 
-def run(input_data: List[str]) -> int:
+def run(input_data: List[str], **kwargs) -> int:
     game = Game(input_data[0])
     game.play_game()
     return game.score

@@ -140,7 +140,7 @@ class SeatSimulation:
 		return occupied
 
 
-def run(input_data: List[str]) -> int:
+def run(input_data: List[str], **kwargs) -> int:
 	seat_simulation = SeatSimulation(input_data)
 	seat_simulation.run_simulation()
 	return seat_simulation.count_occupied()

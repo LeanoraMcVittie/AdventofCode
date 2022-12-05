@@ -53,7 +53,7 @@ class Ticket:
 
 
 # This is not code I am proud of, but in the spirit of keeping it as I solved it...
-def run(input_data: List[str]) -> int:
+def run(input_data: List[str], **kwargs) -> int:
 	rules: List[Rule] = []
 	i = 0
 	while input_data[i] != "":

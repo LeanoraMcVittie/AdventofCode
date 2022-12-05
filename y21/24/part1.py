@@ -88,7 +88,7 @@ def sum_digits(val: int) -> int:
     return sum(int(d) for d in str(val))
 
 
-def run(input_data: List[str]) -> int:
+def run(input_data: List[str], **kwargs) -> int:
     alu = ALU(input_data)
     # for i in range(99999999999999, -1, -1):
     i = 99999999999999

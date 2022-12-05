@@ -20,7 +20,7 @@ def phase(input_list: List[int], index: int) -> List[int]:
 	return output_list
 
 
-def run(input_data: List[str]) -> int:
+def run(input_data: List[str], **kwargs) -> int:
 	if len(input_data[0]) == 32: return
 	input_list = [int(e) for e in input_data[0]] * 10000
 	index = int(input_data[0][:7])

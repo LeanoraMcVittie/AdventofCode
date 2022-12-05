@@ -14,7 +14,7 @@ class Step:
 		self.total_fuel_consumed = last_step.total_fuel_consumed + self.fuel_consumed_in_step
 
 
-def run(input_data: List[str]) -> int:
+def run(input_data: List[str], **kwargs) -> int:
 	crabs = [int(c) for c in input_data[0].split(",")]
 	crabs.sort(reverse=True)
 	max_crab = crabs[0] + 1

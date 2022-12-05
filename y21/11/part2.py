@@ -52,7 +52,7 @@ class OctopodesField(Field):
 			print()
 
 
-def run(input_data: List[str]) -> int:
+def run(input_data: List[str], **kwargs) -> int:
 	octopodes = OctopodesField(input_data)
 	i = 1
 	while octopodes.cycle() < 100: i += 1

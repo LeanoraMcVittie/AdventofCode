@@ -46,7 +46,7 @@ class RuleMap:
 		self.rules[int(rule_id)] = Rule(sub_rules.split(" | "))
 
 
-def run(input_data: List[str]) -> int:
+def run(input_data: List[str], **kwargs) -> int:
 	rule_map = RuleMap()
 	i = 0
 	while input_data[i] != "":

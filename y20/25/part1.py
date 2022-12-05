@@ -17,7 +17,7 @@ def tranform_pk(pk: int, loop_size: int) -> int:
 		value %= 20201227
 	return value
 
-def run(input_data: List[str]) -> int:
+def run(input_data: List[str], **kwargs) -> int:
 	card_pk = int(input_data[0])
 	door_pk = int(input_data[1])
 	card_loop_size = find_loop_size(card_pk)

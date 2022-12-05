@@ -1,6 +1,6 @@
 from typing import List
 
-def run(input_data: List[str]) -> int:
+def run(input_data: List[str], **kwargs) -> int:
 	xloc: int = 3
 	trees: int = 0
 	input_data.pop(0)

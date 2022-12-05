@@ -1,6 +1,6 @@
 from typing import List
 
-def run(input_data: List[str]) -> str:
+def run(input_data: List[str], **kwargs) -> str:
 	increasing: int = 0
 	current: int = 200000
 	for i in range(2, len(input_data)):

@@ -10,7 +10,7 @@ def is_in_tractor_beam(program: str, x: int, y: int) -> bool:
     return tractor_beam.next_output() == 1
 
 
-def run(input_data: List[str]) -> int:
+def run(input_data: List[str], **kwargs) -> int:
     program = input_data[0]
     x = 0
     y = 0

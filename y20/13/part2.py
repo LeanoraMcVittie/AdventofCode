@@ -13,7 +13,7 @@ class Bus:
 # I cheated and used this solution
 # https://www.reddit.com/r/adventofcode/comments/kc4njx/comment/gfo4b1z/
 # This is not the kind of problem I enjoy solving
-def run(input_data: List[str]) -> int:
+def run(input_data: List[str], **kwargs) -> int:
 	bus_data = input_data[1].split(",")
 	busses: List[Bus] = [
 		Bus(int(bus_data[i]), i) 

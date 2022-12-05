@@ -25,7 +25,7 @@ def tile_coordinates(directions: str) -> Tuple[int, int]:
 	return x, y
 
 
-def run(input_data: List[str]) -> int:
+def run(input_data: List[str], **kwargs) -> int:
 	black_tiles: List[Tuple[int, int]] = []
 
 	for tile in input_data:

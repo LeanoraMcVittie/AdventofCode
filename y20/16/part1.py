@@ -26,7 +26,7 @@ class Rule:
 		return any(r.is_in_range(test) for r in self.ranges)
 
 
-def run(input_data: List[str]) -> int:
+def run(input_data: List[str], **kwargs) -> int:
 	rules: List[Rule] = []
 	i = 0
 	while input_data[i] != "":

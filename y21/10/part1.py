@@ -19,6 +19,6 @@ def parse_chunk(chunk: str) -> int:
 			stack.append(chunk[i])
 	return 0
 
-def run(input_data: List[str]) -> int:
+def run(input_data: List[str], **kwargs) -> int:
 	return sum([parse_chunk(datum) for datum in input_data])
 

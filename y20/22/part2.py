@@ -82,7 +82,7 @@ class Game:
 			p2_wins(p1, p2)
 
 
-def run(input_data: List[str]) -> int:
+def run(input_data: List[str], **kwargs) -> int:
 	player_one = []
 	player_two = []
 	i = 1

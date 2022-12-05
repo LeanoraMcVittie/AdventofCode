@@ -51,7 +51,7 @@ class Ore(Chemical):
 		self.total_requested += amount
 
 
-def run(input_data: List[str]) -> int:
+def run(input_data: List[str], **kwargs) -> int:
 	ore = Ore()
 	chemicals_by_name = {ore.name: ore}
 	for datum in input_data:

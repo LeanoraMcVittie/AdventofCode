@@ -29,7 +29,7 @@ class Field:
 			return 0
 		return vent + 1
 
-def run(input_data: List[str]) -> int:
+def run(input_data: List[str], **kwargs) -> int:
 	field = Field(input_data)
 	total_risk = 0
 	for i in range(len(input_data)):

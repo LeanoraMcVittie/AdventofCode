@@ -1,6 +1,6 @@
 from typing import List
 
-def run(input_data: List[str]) -> int:
+def run(input_data: List[str], **kwargs) -> int:
 	start, end = input_data[0].split("-")
 	start = int(start)
 	end = int(end) + 1

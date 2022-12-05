@@ -24,7 +24,7 @@ def find_cycle(positions: Tuple[int, int, int, int]) -> int:
 	return i
 
 
-def run(input_data: List[str]) -> int:
+def run(input_data: List[str], **kwargs) -> int:
 	positions = [[] for _ in range(3)]
 	for datum in input_data:
 		x, y, z = datum[1:-1].split(", ")

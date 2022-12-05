@@ -22,7 +22,7 @@ def phase(input_list: List[int]) -> List[int]:
 		i -= 1
 	return output_list
 
-def run(input_data: List[str]) -> int:
+def run(input_data: List[str], **kwargs) -> int:
 	input_list = [int(e) for e in input_data[0]]
 	for _ in range(100):
 		input_list = phase(input_list)

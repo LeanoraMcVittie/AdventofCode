@@ -166,7 +166,7 @@ class SnailfishNum:
 			else: break
 
 
-def run(input_data: List[str]) -> int:
+def run(input_data: List[str], **kwargs) -> int:
 	magnitudes = []
 	for snailfish1, snailfish2 in it.permutations(input_data, 2):
 		snailfish_number = SnailfishNum(

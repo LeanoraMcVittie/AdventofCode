@@ -68,7 +68,7 @@ class Image(Field):
 		print()
 
 
-def run(input_data: List[str]) -> int:
+def run(input_data: List[str], **kwargs) -> int:
 	algorithm = input_data[0]
 	image = Image.create_from_input(input_data[2:])
 	for i in range(2):

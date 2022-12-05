@@ -66,7 +66,7 @@ class Donut(Field):
         )
 
 
-def run(input_data: List[str]) -> int:
+def run(input_data: List[str], **kwargs) -> int:
     donut = Donut.create_from_input([l.strip("\n") for l in input_data], PortalCell)
     donut.setup_portals()
     steps, _ = donut.dijkstra(

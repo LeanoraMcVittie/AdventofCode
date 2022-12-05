@@ -27,7 +27,7 @@ class Cube:
 		)
 
 
-def run(input_data: List[str]) -> int:
+def run(input_data: List[str], **kwargs) -> int:
 	cubes_on = set()
 	for datum in input_data:
 		setting, coords_str = datum.split(" ")

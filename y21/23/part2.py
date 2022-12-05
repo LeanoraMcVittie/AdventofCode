@@ -281,7 +281,7 @@ def play(
     return None
 
 
-def run(input_data: List[str]) -> int:
+def run(input_data: List[str], **kwargs) -> int:
     # my input
     aroom = "C1D1D2B1"
     broom = "D3C2B2A1"

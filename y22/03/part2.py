@@ -5,7 +5,7 @@ def char_val(c: str) -> int:
 		return ord(c) - 96
 	return ord(c) - 38
 
-def run(input_data: List[str]) -> int:
+def run(input_data: List[str], **kwargs) -> int:
 	count = 0
 	for i in range(0, len(input_data), 3):
 		one = input_data[i]

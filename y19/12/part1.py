@@ -31,7 +31,7 @@ class Moon:
 		return sum(abs(p) for p in self.position) * sum(abs(v) for v in self.velocity)
 
 
-def run(input_data: List[str]) -> int:
+def run(input_data: List[str], **kwargs) -> int:
 	moons = []
 	for datum in input_data:
 		moons.append(Moon(datum))

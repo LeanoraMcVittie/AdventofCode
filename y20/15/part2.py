@@ -1,6 +1,6 @@
 from typing import Dict, List
 
-def run(input_data: List[str]) -> int:
+def run(input_data: List[str], **kwargs) -> int:
 	starters = [int(elem) for elem in input_data[0].split(",")]
 	start_count = len(starters)
 	counters: Dict[int, int] = {starters[i]: i+1 for i in range(0, start_count)}

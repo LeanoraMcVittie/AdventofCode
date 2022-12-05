@@ -76,7 +76,7 @@ def day_slow(black_tiles: List[Tuple[int, int]]) -> List[Tuple[int, int]]:
 	return new_black_tiles
 
 
-def run(input_data: List[str]) -> int:
+def run(input_data: List[str], **kwargs) -> int:
 	black_tiles: List[Tuple[int, int]] = []
 
 	for tile in input_data:

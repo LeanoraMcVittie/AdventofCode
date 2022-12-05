@@ -32,7 +32,7 @@ def evaluate(expression: str) -> int:
 	return product(all_mults)
 
 
-def run(input_data: List[str]) -> int:
+def run(input_data: List[str], **kwargs) -> int:
 	return sum(evaluate(datum) for datum in input_data)
 
 

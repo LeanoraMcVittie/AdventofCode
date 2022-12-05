@@ -31,7 +31,7 @@ class Mask:
 			yield int(binary_str, base=2)
 
 
-def run(input_data: List[str]) -> int:
+def run(input_data: List[str], **kwargs) -> int:
 	memory: Dict[int, int] = {}
 	mask: Mask = None
 	for datum in input_data:

@@ -46,7 +46,7 @@ def move(cup, cups_dict, max_val) -> Cup:
 
 
 
-def run(input_data: List[str]) -> int:
+def run(input_data: List[str], **kwargs) -> int:
 	cups_data = input_data[0]
 	cups_dict = {}
 	first_cup = None
