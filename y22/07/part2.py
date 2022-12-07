@@ -15,9 +15,13 @@ class Directory:
 	files: List[File] = field(default_factory=list)
 	subdirs: Dict[str, "Directory"] = field(default_factory=dict)
 	parent: Optional["Directory"] = None
+	_size: Optional[int] = None
 
-	def get_size(self) -> int:
-		return sum(f.size for f in self.files) + sum(sd.get_size() for sd in self.subdirs.values())
+	@property
+	def size(self) -> int:
+		if self._size is None:
+			self._size = sum(f.size for f in self.files) + sum(sd.size for sd in self.subdirs.values())
+		return self._size
 
 def run(input_data: List[str], **kwargs) -> int:
 	current_directory = Directory(name="/")
@@ -25,25 +29,23 @@ def run(input_data: List[str], **kwargs) -> int:
 	i = 1
 	while i < len(input_data):
 		datum = input_data[i]
-		if datum.split(" ")[-1] == "ls":
-			i += 1
+		i += 1
+		if datum.split()[-1] == "ls":
 			while i < len(input_data) and not (datum := input_data[i]).startswith("$"):
 				if datum.startswith("dir"):
-					dir_name = datum.split(" ")[-1]
+					dir_name = datum.split()[-1]
 					new_dir = Directory(dir_name, parent=current_directory)
 					current_directory.subdirs[dir_name] = new_dir
 					all_dirs.append(new_dir)
 				else: 
-					size, file_name = datum.split(" ")
+					size, file_name = datum.split()
 					current_directory.files.append(File(file_name, int(size)))
 				i += 1
 		elif datum.endswith(".."):
 			current_directory = current_directory.parent
-			i += 1
 		else:
-			current_directory = current_directory.subdirs[datum.split(" ")[-1]]
-			i += 1
-	used_space = all_dirs[0].get_size()
+			current_directory = current_directory.subdirs[datum.split()[-1]]
+	used_space = all_dirs[0].size
 	free_space = TOTAL_SPACE - used_space
 	min_space_to_free = NEED_FREE_SPACE - free_space
-	return min(d.get_size() for d in all_dirs if d.get_size() >= min_space_to_free)
+	return min(d.size for d in all_dirs if d.size >= min_space_to_free)
