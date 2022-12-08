@@ -26,7 +26,7 @@ class Cell(Coord):
         )
 
     def __str__(self) -> str:
-        if not self.value:
+        if self.value is None:
             return "."
         return str(self.value)
 
@@ -66,9 +66,13 @@ class Cell(Coord):
 
 class Field:
     items: List[List[Cell]]
+    x_size: int
+    y_size: int
 
     def __init__(self, x_size: int, y_size: int, cell_class: Callable) -> None:
         self.items = [[cell_class(x, y) for y in range(y_size)] for x in range(x_size)]
+        self.x_size = x_size
+        self.y_size = y_size
         self.specialized_init()
 
     @classmethod
