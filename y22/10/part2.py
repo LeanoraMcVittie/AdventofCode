@@ -11,9 +11,9 @@ class CPU:
 			self.position = 1
 
 		if self.position in [x, x+1, x+2]:
-			print("#", end="")
+			print("❄️ ", end="")
 		else:
-			print(" ", end="")
+			print("🎄", end="")
 
 
 def run(input_data: List[str], **kwargs) -> int:
@@ -29,5 +29,5 @@ def run(input_data: List[str], **kwargs) -> int:
 			cpu.increment_cycle(x)
 			_, val = d.split()
 			x += int(val)
-	
+	print()
 	return 0
