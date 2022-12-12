@@ -1,0 +1,2 @@
+I have dijkstra's ready to go only to lose so much time to debugging the dumb mistake I make when making the only change that needed to be made. Dumb dumb dumb
+While I was optimizing to make this more performant so I didn't have to check every single starting point, the code that was running to do just that completed. yay? I almost wish I'd been forced to complete that optimization.
