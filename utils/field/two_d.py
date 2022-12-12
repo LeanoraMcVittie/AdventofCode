@@ -225,7 +225,10 @@ class Field:
                 filterer=lambda n: n in unvisited and filterer(n),
             )
             for neighbor in neighbors:
-                cost = cost_to_current + neighbor.cost()
+                move_cost = neighbor.cost()
+                if move_cost is None:
+                    continue
+                cost = cost_to_current + move_cost
                 path = unvisited[neighbor]
                 if path and sum(c.cost() for c in path) < cost:
                     continue
