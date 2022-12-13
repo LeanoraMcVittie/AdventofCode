@@ -1,4 +1,5 @@
 from typing import List
+from utils.utils import merge_sort
 import json
 
 def is_smaller(left, right) -> bool:
@@ -22,24 +23,11 @@ def is_smaller(left, right) -> bool:
 		return True
 	return None
 
-def merge_sort(data):
-	if len(data) == 1:
-		return data
-	data1 = merge_sort(data[:len(data)//2])
-	data2 = merge_sort(data[len(data)//2:])
-	sorted_list = []
-	for _ in range(len(data)):
-		if not data2 or (data1 and is_smaller(data1[0], data2[0])):
-			sorted_list.append(data1.pop(0))
-		else:
-			sorted_list.append(data2.pop(0))
-	return sorted_list
-
 def run(input_data: List[str], **kwargs) -> int:
 	all_elements = [json.loads(d) for d in input_data if d]
 	important_elements = [[[6]], [[2]]]
 	all_elements.extend(important_elements)
-	sorted_elements = merge_sort(all_elements)
+	sorted_elements = merge_sort(all_elements, is_smaller)
 	prod = 1
 	for i, e in enumerate(sorted_elements):
 		if e in important_elements:

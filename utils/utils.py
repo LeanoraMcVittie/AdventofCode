@@ -45,3 +45,19 @@ def binary_search(low: int, high: int, is_too_high: Callable[[int], bool]) -> in
         else:
             low = midpoint
     return low
+
+# is_lower: return True if the first parameter should be before the second parameter 
+def merge_sort(data: List, is_lower: Callable[[Any, Any], bool]) -> List:
+    if len(data) == 1:
+        return data
+    data1 = merge_sort(data[:len(data)//2], is_lower)
+    data2 = merge_sort(data[len(data)//2:], is_lower)
+    sorted_list = []
+    for _ in range(len(data)):
+        if not data2 or (data1 and is_lower(data1[0], data2[0])):
+            sorted_list.append(data1.pop(0))
+        else:
+            sorted_list.append(data2.pop(0))
+    return sorted_list
+
+
