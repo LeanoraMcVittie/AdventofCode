@@ -1,0 +1,2 @@
+Utter nightmare of a debug in part 1. Really enjoyed the chance to implement merge sort in part2. I remembered it without googling!
+Parsing using the json library was a trick I picked up at some point last year
