@@ -12,6 +12,10 @@ def get_input(
     return [v.strip() for v in values]
 
 
+def int_split(to_split: str, split_by: str) -> List[int]:
+    return [int(a) for a in to_split.split(split_by)]
+
+
 def is_valid_hex(hex: str) -> bool:
     try:
         int(hex, base=16)
