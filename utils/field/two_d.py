@@ -142,8 +142,39 @@ class Field:
         self,
         transform: Callable[[Cell], Any] = lambda x: x,
         filterer: Callable[[Cell], bool] = lambda x: True,
-    ) -> None:
+    ) -> int:
         return len([cell for cell in self.gen_cells(transform, filterer)])
+    
+    def gen_cells_in_range(
+        self, 
+        x_start: int, 
+        x_end: int, 
+        y_start: int, 
+        y_end: int,
+        transform: Callable[[Cell], Any] = lambda x: x,
+        filterer: Callable[[Cell], bool] = lambda x: True,
+    ) -> Generator[Cell, None, None]:
+        x_coords = sorted([x_start, x_end])
+        x_coords[1] += 1
+        y_coords = sorted([y_start, y_end])
+        y_coords[1] += 1
+        for x in range(*x_coords):
+            for y in range(*y_coords):
+                if filterer(self.items[x][y]):
+                    yield transform(self.items[x][y])
+    
+    def apply_cells_in_range(
+        self, 
+        x_start: int, 
+        x_end: int, 
+        y_start: int, 
+        y_end: int,
+        transform: Callable[[Cell], Any] = lambda x: x,
+        filterer: Callable[[Cell], bool] = lambda x: True,
+    ) -> int:
+        return len([cell for cell in self.gen_cells_in_range(
+            x_start, x_end, y_start, y_end, transform, filterer
+        )])
 
     def first(self, **kwargs) -> Optional[Cell]:
         try:
