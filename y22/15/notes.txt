@@ -1,0 +1,4 @@
+I lost so much time because I didn't see the that we were measuring distance by manhattan distance. I did the whole thing calculating radii and then spent a while trying to figure out wtf was wrong
+Overall really enjoyed this - had to think of a way to not have to check every single possible coordinate
+
+First >hour solve this year
