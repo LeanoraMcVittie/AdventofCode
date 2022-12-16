@@ -31,11 +31,11 @@ def run(input_data: List[str], is_test, **kwargs) -> int:
 	fall_path = [sand_start]
 	i = 0
 	while (curr := fall_path[-1]).x < void_depth:
-		if not (fall := field.get(curr.x+1, curr.y)).value:
-			fall_path.append(fall)
-		elif not (fall := field.get(curr.x+1, curr.y-1)).value:
-			fall_path.append(fall)
-		elif not (fall := field.get(curr.x+1, curr.y+1)).value:
+		if (
+			not (fall := field.get(curr.x+1, curr.y)).value
+			or not (fall := field.get(curr.x+1, curr.y-1)).value
+			or not (fall := field.get(curr.x+1, curr.y+1)).value
+		):
 			fall_path.append(fall)
 		else: 
 			curr.value = "o"

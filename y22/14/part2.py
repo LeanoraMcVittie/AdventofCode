@@ -34,11 +34,11 @@ def run(input_data: List[str], is_test, **kwargs) -> int:
 	i = 0
 	while True:
 		curr = fall_path[-1]
-		if not (fall := field.get(curr.x+1, curr.y)).value:
-			fall_path.append(fall)
-		elif not (fall := field.get(curr.x+1, curr.y-1)).value:
-			fall_path.append(fall)
-		elif not (fall := field.get(curr.x+1, curr.y+1)).value:
+		if (
+			not (fall := field.get(curr.x+1, curr.y)).value
+			or not (fall := field.get(curr.x+1, curr.y-1)).value
+			or not (fall := field.get(curr.x+1, curr.y+1)).value
+		):
 			fall_path.append(fall)
 		else: 
 			if curr == sand_start:
