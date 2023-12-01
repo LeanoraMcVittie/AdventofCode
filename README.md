@@ -6,4 +6,8 @@ I am not fast enough to make it onto any leaderboards, nor do I care to be, but 
 
 2021 is my first year competing in real-time, but I'm also going back and doing some of the older challenges. The IntCode stuff in 2019 is a blast so far!
 
+For Leanora in the future, you run a day with:
+python3 main.py <year> <day> <part> <OPTIONAL: t to only run test, m to only run main, default both>
+TODO: convert to click
+
 Nothing else to add, really.

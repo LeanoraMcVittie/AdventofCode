@@ -1,0 +1,4 @@
+This is bragging
+
+1. This worked perfectly the first time I ran it. Feelsgoodman
+2. I was expecting part 2 to require me to do some serious math, but no it was still reasonable to run my (seemingly pretty naive) solution from part 1. It was slow, but not 'nah, gotta rework this' slow - 5.47 seconds only. Is there some horribly inefficient of modeling this that I missed? Doubly-linked-list seems like the most obvious data structure here by far.

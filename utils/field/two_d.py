@@ -11,11 +11,20 @@ class Coord:
     x: int
     y: int
 
+    def manhattan(self, other: Coord) -> int:
+        return abs(self.x - other.x) + abs(self.y - other.y)
+    
+    def __repr__(self) -> str:
+        return f"({self.x}, {self.y})"
+    
+    def __eq__(self, other) -> bool:
+        return self.x == other.x and self.y == other.y
+
 
 class Cell(Coord):
     def __init__(self, x: int, y: int) -> None:
         super().__init__(x, y)
-        self.value = None
+        self.init_value()
 
     def __eq__(self, other) -> bool:
         return (
@@ -35,6 +44,9 @@ class Cell(Coord):
 
     def __hash__(self) -> int:
         return hash((self.value, self.x, self.y))
+   
+    def init_value(self) -> None:
+        self.value = None
 
     def set_value(self, value: Any) -> Any:
         self.value = value

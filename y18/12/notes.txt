@@ -1,0 +1,5 @@
+My solution for part 2 might not work for all inputs, but it works for the test input 
+and my puzzle input. Due to the rule `.#... => #`, and the way the potted plants end
+up spaced, eventually they fall into a pattern where they just shift one to the left 
+each generation. The solution is then to find the point where it reaches that 
+semi-stability and then calculate what the eventual sum will be.
