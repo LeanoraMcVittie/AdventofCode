@@ -4,9 +4,10 @@ from typing import Any, Callable, Generator, List, Optional, Tuple, Union
 from heapq import heappush, heappop
 from dataclasses import dataclass
 from xml.etree.ElementInclude import include
-
+from functools import total_ordering
 
 @dataclass
+@total_ordering
 class Coord:
     x: int
     y: int
@@ -17,9 +18,11 @@ class Coord:
     def __repr__(self) -> str:
         return f"({self.x}, {self.y})"
     
-    def __eq__(self, other) -> bool:
-        return self.x == other.x and self.y == other.y
+    def __le__(self, other) -> bool:
+        return (self.x, self.y) <= (other.x, other.y)
 
+    def __eq__(self, other) -> bool:
+        return (self.x, self.y) == (other.x, other.y)
 
 class Cell(Coord):
     def __init__(self, x: int, y: int) -> None:
